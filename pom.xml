@@ -11,20 +11,41 @@
     <modules>
         <module>Work2</module>
         <module>Work3</module>
+        <module>Test1</module>
+        <module>Test2</module>
+        <module>Test3</module>
+        <module>Work5</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <mysql.connector.version>8.0.25</mysql.connector.version>
+        <mybatis.version>3.5.7</mybatis.version>
+        <springboot.version>2.2.2.RELEASE</springboot.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <xpath.version>1.1.1</xpath.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--mysql-->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.connector.version}</version>
+            </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
