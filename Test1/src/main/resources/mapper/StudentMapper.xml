@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjh.middlewarework.test1.mapper.StudentMapper">
+    <update id="updateName">
+        update student set name = #{name}
+        where id = #{id}
+    </update>
+
+    <select id="getStudentById" resultType="com.xjh.middlewarework.test1.bean.Student">
+        select * from  student
+        where id = #{id}
+    </select>
+
+    <select id="listAllStudent" resultType="com.xjh.middlewarework.test1.bean.Student">
+        select id,name,sex,birthday,class_id from student
+    </select>
+    
+    <resultMap id="StudentDetails" type="com.xjh.middlewarework.test1.bean.vo.StudentDetails">
+        <id property="id" column="stuId"></id>
+        <result property="name" column="stuName"></result>
+        <result property="birthday" column="stuBirthday"></result>
+        <result property="classId" column="stuClassId"></result>
+        <result property="className" column="stuClassName"></result>
+        <result property="sex" column="stuSex"></result>
+        <collection property="courseList" ofType="com.xjh.middlewarework.test1.bean.vo.StudentCourse">
+            <id property="id" column="courseId"></id>
+            <result property="name" column="courseName"></result>
+            <result property="period" column="coursePeriod"></result>
+            <result property="credit" column="courseCredit"></result>
+            <result property="score" column="courseScore"></result>
+        </collection>
+    </resultMap>
+    
+    <select id="listAllStudentDetails" resultMap="StudentDetails">
+        select
+            s.id as stuId,
+            s.name as stuName,
+            s.sex as stuSex,
+            s.birthday as stuBirthday,
+            s.class_id as stuClassId,
+            c.name as stuClassName,
+            course.id as courseId,
+            course.name as courseName,
+            course.period as coursePeriod,
+            course.credit as courseCredit,
+            score.result as courseScore
+        FROM student s
+            left join class c on s.class_id = c.id
+            left join score  on s.id = score.stu_id
+            left join course on score.course_id = course.id
+    </select>
+</mapper>

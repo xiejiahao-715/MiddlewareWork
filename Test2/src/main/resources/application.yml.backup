@@ -1,0 +1,8 @@
+spring:
+  # 由于我的配置文件中包含我私有密码，所以上传此文件来代替application.yml文件，请自行修改
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    user: admin
+    password: 123
+  jms:
+    pub-sub-domain: false

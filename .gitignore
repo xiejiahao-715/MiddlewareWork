@@ -2,6 +2,4 @@ target/
 .idea/
 *.iml
 
-Test1/
-Test2/
-Test3/
+Test2/**/application.yml
